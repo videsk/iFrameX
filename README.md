@@ -8,19 +8,19 @@ This library is not compatible with IE11. Is designed only for modern browsers.
 
 ## Index
 
-- How to use
-- Configuration
-  - attr
-  - content
+- [How to use](https://github.com/matiaslopezd/iFrameX#how-to-use)
+- [Configuration](https://github.com/matiaslopezd/iFrameX#configuration)
+  - [attr](https://github.com/matiaslopezd/iFrameX#attr)
+  - [content](https://github.com/matiaslopezd/iFrameX#content)
     - type
     - append
     - content
     - attr
-  - append
-  - config
+  - [append](https://github.com/matiaslopezd/iFrameX#append)
+  - [config](https://github.com/matiaslopezd/iFrameX#config)
     - debug
     - action
-- License
+- [License](https://github.com/matiaslopezd/iFrameX#license)
 
 ## How to use
 
@@ -130,4 +130,4 @@ config: {
 
 ## License
 
-MIT Lincese - By Matias Lopez for Videsk™
+MIT Lincense - By Matias Lopez for Videsk™
