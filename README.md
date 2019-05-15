@@ -21,6 +21,8 @@ This library is not compatible with IE11. Is designed only for modern browsers.
   - [config](https://github.com/matiaslopezd/iFrameX#config)
     - debug
     - action
+- [Send postMessage](https://github.com/matiaslopezd/iFrameX#send-postmessage)
+- [Some known bugs](https://github.com/matiaslopezd/iFrameX#some-known-bugs)
 - [License](https://github.com/matiaslopezd/iFrameX#license)
 
 ## Demo
@@ -148,6 +150,12 @@ document.querySelector('[iframe-id="${id}"]').contentWindow.postMessage({msg: 'M
 window.parent.postMessage('Your Message', '*');
 window.parent.postMessage({msg: 'My text'}, '*');
 ```
+
+## Some known bugs
+If have error with injection of content, try change order in object `content` of scripts that block the DOM draw, and move to the final.
+For example `alert('hi')` block DOM drawing, try move to the final and works!.
+
+[Issue #1](https://github.com/matiaslopezd/iFrameX/issues/1).
 
 ## License
 
