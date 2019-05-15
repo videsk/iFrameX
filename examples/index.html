@@ -39,17 +39,6 @@
           }
         },
         {
-          type: 'script',
-          content: `alert('The content of script injected is succesful')`
-        },
-        {
-          type: 'script',
-          content: `alert('All great!')`,
-          attr: {
-            async: true
-          }
-        },
-        {
           type: 'div',
           content: 'A simple primary alert—check it out!',
           attr: {
@@ -71,7 +60,18 @@
           attr: {
             class: 'mydiv'
           }
-        }
+        },
+        {
+          type: 'script',
+          content: `alert('The content of script injected is succesful')`
+        },
+        {
+          type: 'script',
+          content: `alert('All great!')`,
+          attr: {
+            async: true
+          }
+        },
       ],
       config: {
         debug: true,
