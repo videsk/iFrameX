@@ -8,6 +8,7 @@ This library is not compatible with IE11. Is designed only for modern browsers.
 
 ## Index
 
+- [Demo](https://github.com/matiaslopezd/iFrameX#demo)
 - [How to use](https://github.com/matiaslopezd/iFrameX#how-to-use)
 - [Configuration](https://github.com/matiaslopezd/iFrameX#configuration)
   - [attr](https://github.com/matiaslopezd/iFrameX#attr)
@@ -21,6 +22,10 @@ This library is not compatible with IE11. Is designed only for modern browsers.
     - debug
     - action
 - [License](https://github.com/matiaslopezd/iFrameX#license)
+
+## Demo
+
+[Demo here](https://matiaslopezd.github.io/iFrameX/examples/)
 
 ## How to use
 
