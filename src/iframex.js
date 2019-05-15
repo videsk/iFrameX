@@ -74,7 +74,13 @@ const iFrameX = class {
       // Create element with type key
       const el = document.createElement(i.type);
       // Check if exist content key and append to element
-      if (i.content !== '') { el.innerHTML = i.content; };
+      if (i.content && i.content !== '') {
+        if (i.type === 'script' || i.type === 'style') {
+          el.appendChild(document.createTextNode(i.content));
+        } else {
+          el.innerHTML = i.content;
+        }
+      };
       // Check if exist attr key and map keys of object of array
       (i.attr) && Object.keys(i.attr).map((a) => {
         // Set attribute based in key and value
@@ -87,11 +93,13 @@ const iFrameX = class {
       // Map elements
       elements.map((obj) => {
         // Add to iframe
-        this.iframe.contentWindow.document.querySelector(obj.append || 'body').appendChild(_createAndBind(obj));
+        let el = (!obj.append) ? 'body' : obj.append;
+        setTimeout(() => this.iframe.contentWindow.document.querySelector(el).appendChild(_createAndBind(obj)), 1);
       });
     } else if(typeof elements === 'object') {
       // Add single element
-      this.iframe.contentWindow.document.querySelector(elements.append || 'body').appendChild(_createAndBind(elements));
+      let el = (!elements.append) ? 'body' : elements.append;
+      setTimeout(() => this.iframe.contentWindow.document.querySelector(el).appendChild(_createAndBind(elements)), 1);
     }
   };
 
