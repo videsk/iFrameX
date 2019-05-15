@@ -135,6 +135,20 @@ config: {
 },
 ```
 
+## Send postMessage
+
+**From parent to iframe**
+```js
+document.querySelector('[iframe-id="${id}"]').contentWindow.postMessage('Your Message', '*');
+document.querySelector('[iframe-id="${id}"]').contentWindow.postMessage({msg: 'My text'}, '*');
+```
+
+**From iframe to parent**
+```js
+window.parent.postMessage('Your Message', '*');
+window.parent.postMessage({msg: 'My text'}, '*');
+```
+
 ## License
 
 MIT Lincense - By Matias Lopez for Videsk™
