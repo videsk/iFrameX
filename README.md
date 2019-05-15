@@ -105,7 +105,7 @@ content: [
 
 ### append
 
-Set where is appended the iframe and the append value need be in elements query selector format. Read more about elements query selector format [here](https://developer.mozilla.org/es/docs/Web/API/Document/querySelector)
+Set where is appended the iframe and the append value need be in elements query selector format. Read more about elements query selector format [here](https://developer.mozilla.org/es/docs/Web/API/Document/querySelector).
 
 ```js
 append: 'body',
