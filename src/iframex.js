@@ -1,5 +1,4 @@
 const iFrameX = class {
-  'use strict';
   /*
   **  iFrameX - Created by Matias Lopez for Videsk™
   **  Iframe generator for append elements without limitations
