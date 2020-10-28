@@ -8,8 +8,6 @@ This library is not compatible with IE11. Is designed only for modern browsers.
 
 ## Index
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fdd30041a4064005a36843301d3cb2ee)](https://app.codacy.com/app/matiaslopezd/iFrameX?utm_source=github.com&utm_medium=referral&utm_content=matiaslopezd/iFrameX&utm_campaign=Badge_Grade_Dashboard)
-
 - [Demo](https://github.com/matiaslopezd/iFrameX#demo)
 - [How to use](https://github.com/matiaslopezd/iFrameX#how-to-use)
 - [Configuration](https://github.com/matiaslopezd/iFrameX#configuration)

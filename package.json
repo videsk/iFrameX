@@ -1,0 +1,37 @@
+{
+  "name": "@videsk/iframex",
+  "version": "3.0.0",
+  "description": "Javascript Iframe generator with dynamic content injection like HTML, Javascript, CSS, etc. and iframe custom event listener.",
+  "main": "dist/iframex.min.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/videsk/iFrameX.git"
+  },
+  "keywords": [
+    "iframe",
+    "generator",
+    "class",
+    "videsk"
+  ],
+  "author": "Videsk™",
+  "license": "LGPL-2.1",
+  "bugs": {
+    "url": "https://github.com/videsk/iFrameX/issues"
+  },
+  "homepage": "https://github.com/videsk/iFrameX#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+  }
+}
