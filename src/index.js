@@ -76,7 +76,7 @@ module.exports = class iFrameX {
     if (this.iframe) throw new Error('An iframe already exists, please instance a new iFrameX. Read docs here: https://github.com/videsk/iframex');
     const iframe = document.createElement('iframe');
     this.attr['data-iframe-id'] = this.id;
-    Object.keys(this.attr).attributes.forEach(key => iframe.setAttribute(key, this.attr[key]));
+    Object.keys(this.attr).forEach(key => iframe.setAttribute(key, this.attr[key]));
     if (this.container) this.container.appendChild(iframe);
     else throw new Error('The container selector is not valid.');
     this.iframe = iframe;
