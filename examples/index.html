@@ -56,31 +56,29 @@
         },
         {
           type: 'script',
-          content: '(() => window.parent.document.dispatchEvent(new CustomEvent("CustomEventName", { detail: {date: new Date(), message: "Sent from iframe to parent."} })))()', // Iframe sender
+          content: 'window.document.addEventListener("CustomEventName", event => console.log(event))', // Iframe listener
           attr: {
             async: true,
           },
         },
         {
           type: 'script',
-          content: 'window.addEventListener("CustomEventName", event => console.log(event))', // Iframe listener
+          content: 'window.parent.document.dispatchEvent(new CustomEvent("CustomEventName", { detail: {date: new Date(), message: "Sent from iframe to parent."} }))', // Iframe sender
           attr: {
             async: true,
           },
-        }
+        },
       ],
-      options: {
-        eventName: 'CustomEventName',
-        gateway: function(data) { // Parent listener
-          console.log(data);
-        }
-      }
+      options: {eventName: 'CustomEventName'}
     };
 
     async function createIframe(){
       iframe = new iFrameX(options);
       iframe.create();
-      iframe.sendMessage('CustomEventName', {date: new Date(), message: "Sent from parent to iframe"}); // Parent sender
+      iframe.gateway = function (data) { // Parent listener
+        console.log(data);
+        iframe.sendMessage('CustomEventName', {date: new Date(), message: "Sent from parent to iframe"}); // Parent sender
+      }
     }
   </script>
 </body>
