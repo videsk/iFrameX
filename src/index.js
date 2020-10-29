@@ -40,9 +40,12 @@ module.exports = class iFrameX {
    * @public
    */
   create() {
-    this.render();
-    this.addElements(this.content);
-    if (this.eventName) this.addIframeEventListener();
+    return new Promise(resolve => {
+      this.render();
+      this.addElements(this.content);
+      if (this.eventName) this.addIframeEventListener();
+      this.iframe.addEventListener('load', resolve);
+    });
   };
 
   /**

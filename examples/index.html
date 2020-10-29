@@ -12,15 +12,15 @@
   <button onclick="createIframe()">Create iframe with iFrameX</button>
   <!-- Load iFrameXJS -->
   <script src="../dist/iframex.min.js"></script>
-  <!--- Create variable and funtions for initialize iFramex with configuration -->
+  <!--- Create variable and functions for initialize iFrameX with configuration -->
   <script>
     let iframe = null;
     const table = `<thead> <tr> <th scope="col">#</th> <th scope="col">First</th> <th scope="col">Last</th> <th scope="col">Handle</th> </tr></thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr> <th scope="row">2</th> <td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr> <th scope="row">3</th> <td>Larry</td><td>the Bird</td><td>@twitter</td></tr></tbody>`;
-    const content = {
-      attr: {
+    const options = {
+      attributes: {
         width: '100%',
         height: '600',
-        class: 'nice-iframe'
+        class: 'nice-iframe',
       },
       content: [
         {
@@ -28,60 +28,66 @@
           append: 'head',
           attr: {
             href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-            rel: 'stylesheet'
-          }
+            rel: 'stylesheet',
+          },
         },
         {
           type: 'script',
           append: 'head',
           attr: {
-            src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
-          }
+            src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
+          },
         },
         {
           type: 'div',
           content: 'A simple primary alert—check it out!',
           attr: {
             class: 'alert alert-primary',
-            role: 'alert'
-          }
+            role: 'alert',
+          },
         },
         {
           type: 'table',
           content: table,
           attr: {
-            class: 'table'
-          }
+            class: 'table',
+          },
         },
         {
           type: 'h1',
           append: 'div.alert',
           content: 'Hi',
           attr: {
-            class: 'mydiv'
-          }
+            class: 'mydiv',
+          },
         },
         {
           type: 'script',
-          content: `alert('The content of script injected is succesful')`
-        },
-        {
-          type: 'script',
-          content: `alert('All great!')`,
+          content: '(() => window.parent.document.dispatchEvent(new CustomEvent("CustomEventName", { detail: {date: new Date(), message: "Sent from iframe to parent."} })))()', // Iframe sender
           attr: {
-            async: true
-          }
+            async: true,
+          },
         },
+        {
+          type: 'script',
+          content: 'window.addEventListener("CustomEventName", event => console.log(event))', // Iframe listener
+          attr: {
+            async: true,
+          },
+        }
       ],
       config: {
-        debug: true,
-        action: (msg) => { alert(msg.data) }
+        eventName: 'CustomEventName',
+        gateway: function(data) { // Parent listener
+          console.log(data);
+        }
       }
     };
 
-    function createIframe(){
-      iframe = new iFrameX(content);
-      iframe.init();
+    async function createIframe(){
+      iframe = new iFrameX(options);
+      await iframe.create();
+      iframe.sendMessage('CustomEventName', {date: new Date(), message: "Sent from parent to iframe"}); // Parent sender
     }
   </script>
 </body>

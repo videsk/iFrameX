@@ -31,7 +31,7 @@ Use iFrameX is really easy, only need do two things:
 
 ```js
 const iframe = new iFrameX(options);
-iframe.create();
+await iframe.create(); // Asynchronous
 ```
 
 ## Params
@@ -157,15 +157,15 @@ const options = {
     // This is how you can send from iframe to parent
     const event = new CustomEvent("CustomEventName", { detail: {date: new Date()} });
     window.parent.document.dispatchEvent(event);
-})
+})();
 
 const content = {
     type: 'script',
-    content: '(() => window.parent.document.dispatchEvent(new CustomEvent("CustomEventName", { detail: {date: new Date()} })))', // Example content in one line
+    content: '(() => window.parent.document.dispatchEvent(new CustomEvent("CustomEventName", { detail: {date: new Date()} })))()', // Example content in one line
 }; 
 
 const iframe = new IframeX({content, options});
-iframe.create();
+await iframe.create();
 ```
 
 The above example code, create an iframe and when this will render, sent custom event `CustomEventName` with data, that contains an `Object` with `date: new Date()`. (Obviously data is completely customizable)
@@ -217,4 +217,4 @@ For example `alert('hi')` block DOM drawing, try move to the final and works!.
 
 ## License
 
- LGPL-2.1 License - By Videsk™
+LGPL-2.1 License - By Videsk™
