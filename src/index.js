@@ -40,12 +40,9 @@ module.exports = class iFrameX {
    * @public
    */
   create() {
-    return new Promise(resolve => {
-      this.render();
-      this.addElements(this.content);
-      if (this.eventName) this.addIframeEventListener();
-      this.iframe.addEventListener('load', resolve);
-    });
+    this.render();
+    this.addElements(this.content);
+    if (this.eventName) this.addIframeEventListener();
   };
 
   /**
@@ -56,7 +53,7 @@ module.exports = class iFrameX {
    */
   sendMessage(name = this.eventName, data) {
     const event = new CustomEvent(name, {detail: data});
-    this.iframe.document.dispatchEvent(event);
+    this.iframe.contentWindow.document.dispatchEvent(event);
   }
 
   /**
@@ -64,8 +61,7 @@ module.exports = class iFrameX {
    * @public
    */
   addIframeEventListener() {
-    const {contentWindow} = this.iframe;
-    window.addEventListener(this.eventName, message => (message.source === contentWindow) && this.gateway(message.detail));
+    window.addEventListener(this.eventName, message => this.gateway(message.detail));
   }
 
   /**
@@ -74,9 +70,8 @@ module.exports = class iFrameX {
    */
   render() {
     if (this.iframe) throw new Error('An iframe already exists, please instance a new iFrameX. Read docs here: https://github.com/videsk/iframex');
-    const iframe = document.createElement('iframe');
     this.attr['data-iframe-id'] = this.id;
-    Object.keys(this.attr).forEach(key => iframe.setAttribute(key, this.attr[key]));
+    const iframe = this._createAndBind({type: 'iframe', attr: this.attr});
     if (this.container) this.container.appendChild(iframe);
     else throw new Error('The container selector is not valid.');
     this.iframe = iframe;
@@ -84,12 +79,12 @@ module.exports = class iFrameX {
 
   /**
    * Add elements
-   * @param elements {Object} - List of elements
+   * @param elements {Object|Array} - List of elements
    * @public
    */
   addElements(elements) {
-    if (Array.isArray(elements)) this._addByObject(elements);
-    else if (typeof elements === 'object') this._addByArray(elements);
+    if (Array.isArray(elements)) this._addByArray(elements);
+    else if (typeof elements === 'object') this._addByObject(elements);
   }
 
   /**
@@ -106,7 +101,7 @@ module.exports = class iFrameX {
     const {type, content = '', attr = {}} = objectElement;
     const element = document.createElement(type);
     if (['style', 'script'].includes(type)) element.appendChild(document.createTextNode(content));
-    else element.innerText = content;
+    else element.innerHTML = content;
     if (Object.keys(attr).length > 0) Object.keys(attr).forEach(attribute => element.setAttribute(attribute, attr[attribute]));
     return element;
   }
@@ -128,8 +123,8 @@ module.exports = class iFrameX {
    * @private
    */
   _addByObject(element) {
-    const isValidObject = Object.keys(element).length > 0;
-    if (!isValidObject) return console.warn('No element found in object elements.');
+    const isValidObject = 'type' in element;
+    if (!isValidObject) return console.warn('Tag element is mandatory.');
     this._delayRenderHack(element);
   }
 

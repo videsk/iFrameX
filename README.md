@@ -31,7 +31,7 @@ Use iFrameX is really easy, only need do two things:
 
 ```js
 const iframe = new iFrameX(options);
-await iframe.create(); // Asynchronous
+iframe.create();
 ```
 
 ## Params
@@ -165,7 +165,7 @@ const content = {
 }; 
 
 const iframe = new IframeX({content, options});
-await iframe.create();
+iframe.create();
 ```
 
 The above example code, create an iframe and when this will render, sent custom event `CustomEventName` with data, that contains an `Object` with `date: new Date()`. (Obviously data is completely customizable)

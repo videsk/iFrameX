@@ -32,13 +32,6 @@
           },
         },
         {
-          type: 'script',
-          append: 'head',
-          attr: {
-            src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
-          },
-        },
-        {
           type: 'div',
           content: 'A simple primary alert—check it out!',
           attr: {
@@ -86,7 +79,7 @@
 
     async function createIframe(){
       iframe = new iFrameX(options);
-      await iframe.create();
+      iframe.create();
       iframe.sendMessage('CustomEventName', {date: new Date(), message: "Sent from parent to iframe"}); // Parent sender
     }
   </script>
