@@ -189,6 +189,8 @@ window.addEventListener('CustomEventName', newMessage);
 iframe.sendMessage('CustomEventName', {date: new Date()});
 ```
 
+**Is too important the event listener on iframe will set before send the event from the parent. Is highly recommended set event listener on iframe before all scripts on the body!** 
+
 ### Why not use PostMessage?
 
 Because you need set `message` listener before iframe will render on a parent. And can't create multiples custom events before and after iframe was rendered.

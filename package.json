@@ -1,7 +1,7 @@
 {
   "name": "@videsk/iframex",
   "version": "3.1.0",
-  "description": "Javascript Iframe generator with dynamic content injection like HTML, Javascript, CSS, etc. and iframe custom event listener.",
+  "description": "Javascript Iframe generator with dynamic content injection like HTML, Javascript, CSS, etc. and two way communication API.",
   "main": "dist/iframex.min.js",
   "directories": {
     "example": "examples"
