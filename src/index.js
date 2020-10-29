@@ -103,11 +103,11 @@ module.exports = class iFrameX {
    * @private
    */
   _createAndBind(objectElement) {
-    const {type, content} = objectElement;
+    const {type, content = '', attr = {}} = objectElement;
     const element = document.createElement(type);
-    if (!content) return; //TODO: This maybe avoid add empty elements
     if (['style', 'script'].includes(type)) element.appendChild(document.createTextNode(content));
     else element.innerText = content;
+    if (Object.keys(attr).length > 0) Object.keys(attr).forEach(attribute => element.setAttribute(attribute, attr[attribute]));
     return element;
   }
 
