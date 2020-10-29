@@ -61,7 +61,7 @@ module.exports = class iFrameX {
    * @public
    */
   addIframeEventListener() {
-    window.addEventListener(this.eventName, message => this.gateway(message.detail));
+    window.document.addEventListener(this.eventName, message => this.gateway(message.detail));
   }
 
   /**
