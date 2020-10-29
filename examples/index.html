@@ -56,7 +56,7 @@
         },
         {
           type: 'script',
-          content: 'window.document.addEventListener("CustomEventName", event => console.log(event))', // Iframe listener
+          content: 'window.document.addEventListener("CustomEventName", event => console.log(event.detail))', // Iframe listener
           attr: {
             async: true,
           },
