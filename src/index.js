@@ -39,11 +39,22 @@ module.exports = class iFrameX {
    * Function to create iframe based on constructor params
    * @public
    */
-  init() {
-    this.create();
+  create() {
+    this.render();
     this.addElements(this.content);
     if (this.eventName) this.addIframeEventListener();
   };
+
+  /**
+   * Send data from parent to iframe
+   * @param name {String} - Event name
+   * @param data {*} - Anything you want
+   * @public
+   */
+  sendMessage(name = this.eventName, data) {
+    const event = new CustomEvent(name, {detail: data});
+    this.iframe.document.dispatchEvent(event);
+  }
 
   /**
    * Add iframe event listener
@@ -58,7 +69,7 @@ module.exports = class iFrameX {
    * Create iframe with attributes and append custom elements
    * @public
    */
-  create() {
+  render() {
     if (this.iframe) throw new Error('An iframe already exists, please instance a new iFrameX. Read docs here: https://github.com/videsk/iframex');
     const iframe = document.createElement('iframe');
     this.attr['data-iframe-id'] = this.id;
